@@ -1,0 +1,9 @@
+{
+  "name": "ProShot Android Pro Camera",
+  "short_name": "ProShot",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0d10",
+  "theme_color": "#0b0d10",
+  "description": "A manual-control camera web app for Android browsers."
+}

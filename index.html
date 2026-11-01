@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10"><title>ProShot — Android Pro Camera</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="#"><span>◉</span><b>PROSHOT</b><small>ANDROID PRO CAMERA</small></a>
+  <div class="top-actions">
+    <button id="gridBtn" class="icon" title="Grid">▦</button>
+    <button id="torchBtn" class="icon" title="Flash / torch">ϟ</button>
+    <button id="flipBtn" class="icon" title="Switch camera">↻</button>
+    <button id="settingsBtn" class="icon" title="Camera settings">⚙</button>
+  </div>
+</header>
+<main>
+<section class="finder" id="finder">
+  <video id="video" autoplay muted playsinline></video><canvas id="grid"></canvas>
+  <div class="finder-top"><span id="cameraStatus">CAMERA OFF</span><span id="resolution">—</span></div>
+  <div id="focusBox" class="focus-box"></div>
+  <div class="finder-bottom"><span id="zoomReadout">1.0×</span><span id="evReadout">EV 0.0</span><span id="modeReadout">PHOTO</span></div>
+  <div class="welcome" id="welcome"><div class="lens">◎</div><h1>Make every frame count.</h1><p>Pro controls for your Android camera. Camera features vary by phone and browser.</p><button id="startBtn" class="lime">START CAMERA</button></div>
+  <div class="toast" id="toast"></div>
+</section>
+<section class="mode-strip">
+  <button class="mode active" data-mode="photo">PHOTO</button><button class="mode" data-mode="portrait">PORTRAIT LOOK</button><button class="mode" data-mode="landscape">LANDSCAPE</button><button class="mode" data-mode="night">NIGHT</button><button class="mode" data-mode="video" disabled>VIDEO <i>SOON</i></button>
+</section>
+<section class="quick-row">
+  <label>RATIO<select id="ratio"><option value="4:3">4:3</option><option value="16:9">16:9</option><option value="1:1">1:1</option><option value="full">FULL SENSOR</option></select></label>
+  <label>FILE<select id="fileType"><option value="jpeg">JPEG</option><option value="webp">WEBP (fallback supported)</option></select></label>
+  <label>QUALITY<select id="quality"><option value="1">MAX</option><option value=".95" selected>HIGH</option><option value=".85">BALANCED</option></select></label>
+  <label>TIMER<select id="timer"><option value="0">OFF</option><option value="3">3 SEC</option><option value="5">5 SEC</option><option value="10">10 SEC</option></select></label>
+</section>
+<section class="pro-panel">
+ <div class="panel-title"><b>PRO CONTROLS</b><span id="supportState">WAITING FOR CAMERA</span></div>
+ <div class="controls-grid">
+  <label class="control"><span>ZOOM <b id="zoomVal">1.0×</b></span><input id="zoom" type="range" min="1" max="1" step=".1" value="1"></label>
+  <label class="control"><span>EXPOSURE <b id="evVal">0.0 EV</b></span><input id="exposure" type="range" min="-2" max="2" step=".1" value="0"></label>
+  <label class="control"><span>FOCUS <b id="focusVal">AUTO</b></span><input id="focus" type="range" min="0" max="1" step=".01" value=".5"></label>
+  <label class="control"><span>WHITE BALANCE <b id="wbVal">AUTO</b></span><select id="whiteBalance"><option value="continuous">AUTO</option><option value="daylight">DAYLIGHT</option><option value="cloudy">CLOUDY</option><option value="fluorescent">FLUORESCENT</option><option value="incandescent">TUNGSTEN</option></select></label>
+  <label class="control"><span>FOCUS MODE <b id="focusModeVal">CONTINUOUS</b></span><select id="focusMode"><option value="continuous">CONTINUOUS</option><option value="single-shot">SINGLE AF</option><option value="manual">MANUAL</option></select></label>
+  <label class="control"><span>EXPOSURE MODE <b id="exposureModeVal">CONTINUOUS</b></span><select id="exposureMode"><option value="continuous">AUTO</option><option value="single-shot">SINGLE</option><option value="manual">MANUAL</option></select></label>
+ </div>
+ <div class="manual-note" id="manualNote">Enable the camera to check which controls your Android device exposes.</div>
+</section>
+<section class="capture-row">
+ <button class="side-action" id="galleryBtn"><span>▧</span><small>GALLERY</small></button>
+ <div class="shutter-wrap"><button id="shutter" class="shutter" aria-label="Take photo"><span></span></button><small id="captureLabel">TAP TO CAPTURE</small></div>
+ <button class="side-action" id="burstBtn"><span>⟲</span><small>BURST: OFF</small></button>
+</section>
+<section class="bottom-tools">
+ <button id="histogramBtn">HISTOGRAM <b>OFF</b></button><button id="mirrorBtn">SELFIE MIRROR <b>OFF</b></button><button id="downloadLast" disabled>DOWNLOAD LAST</button>
+</section>
+<p class="footnote">PROSHOT • SENSOR QUALITY DEPENDS ON YOUR DEVICE • SHOOT IN GOOD LIGHT FOR BEST RESULTS</p>
+</main>
+<dialog id="galleryDialog"><div class="dialog-head"><h2>Captured photos</h2><button id="closeGallery" class="icon">✕</button></div><p id="emptyGallery">Your recent captures will appear here.</p><div id="gallery" class="gallery"></div></dialog>
+<dialog id="settingsDialog"><div class="dialog-head"><h2>Camera capabilities</h2><button id="closeSettings" class="icon">✕</button></div><p class="settings-intro">This report shows the features your browser makes available to ProShot. Unsupported settings cannot be forced by a website.</p><div id="capabilityList"></div><p class="settings-intro">For true manual ISO, shutter speed, RAW/DNG and full sensor access, a native Android app using Camera2/CameraX is needed.</p></dialog>
+<script src="app.js"></script>
+</body></html>
